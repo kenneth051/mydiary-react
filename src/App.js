@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import Landingpage from './container/landingpage'
 import './App.css';
-import Navbar from './component/navbar'
 
 class App extends Component {
   render() {
     return (
-      <Navbar/>
+      <Landingpage/>
     );
   }
 }
