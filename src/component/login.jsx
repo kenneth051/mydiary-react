@@ -7,7 +7,7 @@ import {
 class LoginForm extends Component {
     state = {
         username:"",
-        loginpassword: "",
+        password: "",
         message:"",
     } 
 
@@ -25,6 +25,11 @@ class LoginForm extends Component {
           }
          this.props.loginUser(data)
         } 
+        componentDidUpdate=()=>{
+        if(this.props.user.user.token){
+            const { history } = this.props;
+            history.push("/createEntry");}
+         }
     render() {
         if(this.props.user.user.token){
             LoggedInUser(this.props.user.user.token,this.state.username)
