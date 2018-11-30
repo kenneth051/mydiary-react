@@ -9,12 +9,12 @@ class EntryForm extends Component {
     render() { 
         return ( 
                  <div><div className="entry_row">{this.props.actionType}</div>
-                     <div class="jumbotron">
+                     <div className="jumbotron">
                 <form method="POST" onSubmit={this.props.onhandleSubmit}>
-                    <div class="form-group">
+                    <div className="form-group">
                         <input type="text" name="title" className="form-control border-0" defaultValue={this.props.title} onChange={this.props.change} placeholder="Title here" required/>
                     </div>
-                    <div class="form-group"> 
+                    <div className="form-group"> 
                     <Editor
                     text={this.props.body}
                     placeholder="body here"
@@ -24,7 +24,7 @@ class EntryForm extends Component {
                     
                     />
                     </div>
-                    <center><button type="submit" class="btn btn-success">{this.props.buttonAction}</button></center>
+                    <center><button type="submit" className="btn btn-success">{this.props.buttonAction}</button></center>
                 </form>
             </div>
             </div>

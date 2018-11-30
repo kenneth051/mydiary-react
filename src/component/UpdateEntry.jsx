@@ -25,7 +25,6 @@ class UpdateEntry extends Component {
               title={this.title}
               body={this.body}
               id={this.props.match.params.id}
-              {...this.props}
             />
           </div>
     );

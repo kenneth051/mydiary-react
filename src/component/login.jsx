@@ -37,13 +37,13 @@ class LoginForm extends Component {
         return ( 
             <div>
                 <form method="POST" onSubmit={this.handleSubmit}>
-                    <div class="form-group">
+                    <div className="form-group">
                         <input type="text" name="username" className="form-control border-0" onChange={this.Change} placeholder="Enter Username" required/>
                     </div>
-                    <div class="form-group">
-                        <input type="password" name="password" class="form-control border-0" id="exampleInputPassword1" onChange={this.Change} placeholder="Password" required/>
+                    <div className="form-group">
+                        <input type="password" name="password" className="form-control border-0" id="exampleInputPassword1" onChange={this.Change} placeholder="Password" required/>
                     </div>
-                    <center><button type="submit" class="btn btn-success">LOGIN</button></center>
+                    <center><button type="submit" className="btn btn-success">LOGIN</button></center>
                 </form>
                 {this.props.user.user.status_code ===403 ?
                 <div className="error">{this.props.user.user.message}{this.state.message}</div>:""}
