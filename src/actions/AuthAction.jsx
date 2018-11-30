@@ -4,13 +4,7 @@ import {
 } from './ActionTypes';
 
 
-const baseurl = 'http://localhost:5000';
-
-// const myHeaders = new Headers({
-//   Accept: 'application/json',
-//   'Content-type': 'application/json',
-//   Token: localStorage.getItem('token'),
-// });
+const baseurl = 'https://infinite-crag-58351.herokuapp.com';
 
 export const signUpUser = userData => dispatch => fetch(`${baseurl}/API/v1/auth/user/signup`, {
   method: 'POST',

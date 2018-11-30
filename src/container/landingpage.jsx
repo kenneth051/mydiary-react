@@ -45,6 +45,7 @@ const Landingpage = props => (
           </div>
         </div>
       </div>
+      <br />
       <div className="fixed-bottom link">
         <Footer />
       </div>
