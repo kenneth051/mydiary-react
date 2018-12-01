@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import renderHTML from 'react-render-html';
 import Navbar from './Navbar'
 import Footer from './Footer';
+import LoggedinUser from './Loggedin';
 import Menu from './menu';
 import {
     fetchEntries,
@@ -44,6 +45,7 @@ class GetEntries extends Component {
             <div>
                 <Navbar />
                 <div className="container">
+                <LoggedinUser/>
                 <Menu /><br />
                 <div className="scroll">
                 {showArticles}
