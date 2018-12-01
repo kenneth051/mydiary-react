@@ -67,7 +67,7 @@ class Main extends Component {
                 body={this.props.body}
                 />
                 {status_code ?
-                <div class="error">{message}</div>:"none"}
+                <div class="error">{message}</div>:""}
                 </div>
                 <div className="fixed-bottom link">
                 <Footer />

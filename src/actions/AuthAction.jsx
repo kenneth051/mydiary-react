@@ -5,6 +5,7 @@ import {
 
 
 const baseurl = 'https://infinite-crag-58351.herokuapp.com';
+//const baseurl = 'http://localhost:5000';
 
 export const signUpUser = userData => dispatch => fetch(`${baseurl}/API/v1/auth/user/signup`, {
   method: 'POST',

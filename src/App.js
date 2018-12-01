@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import store from './store';
+import ProtectedRoute from './common/AuthToken';
 import Landingpage from './container/landingpage';
 import CreateEntries from './component/CreateEntry';
 import UpdateEntry from './component/UpdateEntry';
@@ -18,10 +19,10 @@ class App extends Component {
           <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Landingpage} />
-            <Route exact path="/createEntry" component={CreateEntries} />
-            <Route exact path="/entry/:id/edit" component={UpdateEntry} />
-            <Route exact path="/allEntries" component={GetEntries} />
-            <Route exact path="/entry/:id" component={ViewEntry} />
+            <ProtectedRoute exact path="/createEntry" component={CreateEntries} />
+            <ProtectedRoute exact path="/entry/:id/edit" component={UpdateEntry} />
+            <ProtectedRoute exact path="/allEntries" component={GetEntries} />
+            <ProtectedRoute exact path="/entry/:id" component={ViewEntry} />
             <Route component={notFound} />
           </Switch>
         </BrowserRouter>

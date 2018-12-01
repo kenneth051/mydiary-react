@@ -13,7 +13,7 @@ class GetEntries extends Component {
         title:"",
         body:""
      }
-     componentWillMount(){
+     componentDidMount(){
          this.props.fetchEntries()
      }
 

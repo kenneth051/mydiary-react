@@ -3,14 +3,14 @@ import {connect} from 'react-redux';
 import {
     loginUser,
   } from '../actions/AuthAction';
-  import LoggedInUser from '../common/getToken';
+import LoggedInUser from '../common/getToken';
 class LoginForm extends Component {
     state = {
         username:"",
         password: "",
         message:"",
-    } 
-
+        loginloader:"",
+    }
     Change=(e)=>{
         this.setState({
             [e.target.name]:e.target.value
@@ -18,10 +18,10 @@ class LoginForm extends Component {
     }
     handleSubmit=(event)=>{
         event.preventDefault()
+        this.setState({loginloader:true})
         const data={
             username:this.state.username,
             password: this.state.password,
-
           }
          this.props.loginUser(data)
         } 
@@ -31,6 +31,7 @@ class LoginForm extends Component {
             history.push("/createEntry");}
          }
     render() {
+
         if(this.props.user.user.token){
             LoggedInUser(this.props.user.user.token,this.state.username)
         }
@@ -46,8 +47,8 @@ class LoginForm extends Component {
                     <center><button type="submit" className="btn btn-success">LOGIN</button></center>
                 </form>
                 {this.props.user.user.status_code ===403 ?
-                <div className="error">{this.props.user.user.message}{this.state.message}</div>:""}
-
+                <div className="error">{this.props.user.user.message}</div>:""}
+                
             </div>
          );
     }

@@ -37,7 +37,7 @@ describe('entries components', () => {
         results: { title: 'man' },
       },
     };
-    mount(<Router><UpdateEntry store={store} match={{ params: { id: 2 } }} {...props} /></Router>);
+    mount(<Router><Provider store={store}><UpdateEntry store={store} match={{ params: { id: 2 } }} {...props} /></Provider></Router>);
   });
   it('should test view entry without crashing', () => {
     mount(<Router><ViewEntry store={store} match={{ params: { id: 2 } }} /></Router>);
