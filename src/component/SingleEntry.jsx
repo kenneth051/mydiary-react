@@ -4,6 +4,7 @@ import renderHTML from 'react-render-html';
 import Navbar from './Navbar'
 import Footer from './Footer';
 import Menu from './menu';
+import LoggedinUser from './Loggedin';
 import {
     singleEntry,
   } from '../actions/AuthAction';
@@ -41,6 +42,7 @@ class ViewEntry extends Component {
             <div>
                 < Navbar />
                 <div className="container">
+                <LoggedinUser/>
                 <Menu /><br />
                 <div className="jumbotron">
                 <div className="row">

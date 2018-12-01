@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import EntryForm from './EntryForm';
 import Menu from './menu';
+import LoggedinUser from './Loggedin';
 import {
     CreateEntries, UpdateEntries
   } from '../actions/AuthAction';
@@ -56,6 +57,7 @@ class Main extends Component {
             <div>
                 <Navbar />
                 <div className="container">
+                <LoggedinUser/>
                 <Menu /><br />
                 <EntryForm
                 actionType={this.props.actionType} 
