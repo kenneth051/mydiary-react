@@ -19,8 +19,7 @@ class ViewEntry extends Component {
           }
      }
      goUpdate=(id)=>{
-        const { history } = this.props;
-        history.push(`/entry/${id}/edit`);}
+        window.location=window.location=`/entry/${id}/edit`}
 
     render() { 
        const entry=this.props.entry.entry.result;
@@ -30,24 +29,24 @@ class ViewEntry extends Component {
         entry_id = entry[0].id;
         showEntry = entry.map(entry => (
         <div key={entry.id}>
-        <p class="title"><center>{entry.title}</center></p><hr />
+        <div className="title"><center>{entry.title}</center></div><hr />
         <div className="word_wrap">{renderHTML(entry.body)}</div>
         <hr />
-        <div class="row entry_footer">
-                <div class="col-lg-4"><center>CREATED DATE: {entry.entry_date}</center></div><div class="col-lg-4"><center>CREATED TIME: {entry.entry_time}</center></div><div class="col-lg-4"><center>UPDATED ON: {entry.updated}</center></div>
+        <div className="row entry_footer">
+                <div className="col-lg-4"><center>CREATED DATE: {entry.entry_date}</center></div><div class="col-lg-4"><center>CREATED TIME: {entry.entry_time}</center></div><div class="col-lg-4"><center>UPDATED ON: {entry.updated}</center></div>
         </div>
         </div>
       ));}
     return ( 
             <div>
                 < Navbar />
-                <div class="container">
+                <div className="container">
                 <Menu /><br />
-                <div class="jumbotron">
-                <div class="row">
-                <div class="col-lg-5"></div>
-                <div class="col-lg-5"></div>
-                <div class="col-lg-2"><button className="btn btn-success" onClick={()=>{this.goUpdate(entry_id)}}>EDIT ENTRY</button></div>
+                <div className="jumbotron">
+                <div className="row">
+                <div className="col-lg-5"></div>
+                <div className="col-lg-5"></div>
+                <div className="col-lg-2"><button className="btn btn-success" onClick={()=>{this.goUpdate(entry_id)}}>EDIT ENTRY</button></div>
                 </div>
                  {showEntry}
                  </div>

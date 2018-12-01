@@ -15,6 +15,7 @@ class RegistrationForm extends Component {
         password1: "",
         gender: "",
         message:"",
+        load:"",
     } 
     change=(e)=>{
         this.setState({
@@ -23,6 +24,7 @@ class RegistrationForm extends Component {
     }
     handleSubmit=(event)=>{
         event.preventDefault()
+        this.setState({load:true});
         const data={
             firstname:this.state.firstname,
             lastname:this.state.lastname,
@@ -31,10 +33,10 @@ class RegistrationForm extends Component {
             password: this.state.password,
             gender: this.state.gender,
           }
-         
           if(this.state.password!== this.state.password1){
               this.setState({
                 message:"passwords don't match",
+                load:false
               })   
         }else{
             this.props.signUpUser(data);
@@ -58,35 +60,38 @@ class RegistrationForm extends Component {
         return ( 
             <div>
                 <form method="POST"onSubmit={this.handleSubmit}>
-                   <div class="form-group">
+                   <div className="form-group">
                         <input type="text" name="firstname" className="form-control border-0" onChange={this.change} placeholder="Enter Firstname" required />
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="lastname" class="form-control border-0" onChange={this.change}placeholder="Enter Lastname" required/>
+                    <div className="form-group">
+                        <input type="text" name="lastname" className="form-control border-0" onChange={this.change}placeholder="Enter Lastname" required/>
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="username" class="form-control border-0" onChange={this.change}placeholder="Enter Username" required/>
+                    <div className="form-group">
+                        <input type="text" name="username" className="form-control border-0" onChange={this.change}placeholder="Enter Username" required/>
                     </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control border-0" onChange={this.change} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required/>
+                    <div className="form-group">
+                        <input type="email" name="email" className="form-control border-0" onChange={this.change} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required/>
                     </div>
-                    <div class="form-group">
-                        <input type="password" name="password" class="form-control border-0" onChange={this.change} placeholder="Password" required/>
+                    <div className="form-group">
+                        <input type="password" name="password" className="form-control border-0" onChange={this.change} placeholder="Password" required/>
                     </div>
-                    <div class="form-group">
-                        <input type="password" name="password1"  class="form-control border-0"  onChange={this.change} placeholder="Enter Password Again" required/>
+                    <div className="form-group">
+                        <input type="password" name="password1"  className="form-control border-0"  onChange={this.change} placeholder="Enter Password Again" required/>
                     </div>
-                    <div class="form-group">
-                        <select class="form-control" name="gender" onChange={this.change} required>
+                    <div className="form-group">
+                        <select className="form-control" name="gender" onChange={this.change} required>
                             <option disabled selected>Select your gender</option>
                             <option value ="male">Male</option>
                             <option value ="female">Female</option>
                         </select>
                     </div>
-                    <center><button type="submit" class="btn btn-success" >CREATE ACCOUNT</button></center>
+                    <center><button type="submit" className="btn btn-success" >CREATE ACCOUNT</button></center>
                 </form>
                 {this.props.user.user.status_code ===400 || this.state.message ||this.props.user.user.status_code ===409 ?
-                <div class="error">{this.props.user.user.message}{this.state.message}</div>:""}
+                <div className="error">{this.props.user.user.message}{this.state.message}</div>:""}
+                {this.state.load===true && !this.props.user.user.message && !this.state.message?
+                <div class="lds-dual-ring"></div>:""
+                }
             </div>
          );
     }

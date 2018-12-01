@@ -13,27 +13,26 @@ class GetEntries extends Component {
         title:"",
         body:""
      }
-     componentWillMount(){
+     componentDidMount(){
          this.props.fetchEntries()
      }
 
     render() { 
        const data=this.props.entry.entries.result;
-       console.log(data)
        let showArticles;
        if(data){
         showArticles = data.map(entry => (
         <div key={entry.id}>
-            <div class="card">
+            <div className="card">
             <Link to={`/entry/${entry.id}`}>
-            <div class="card-header title">{entry.title}</div>
+            <div className="card-header title">{entry.title}</div>
               </Link>
-                <p class="card-body entry_body truncate">{renderHTML(entry.body)}</p> 
-                <div class="card-footer">
-                    <div class="row entry_footer">
-                        <div class="col-lg-4">CREATED DATE: {entry.entry_date}</div>
-                        <div class="col-lg-4">CREATED TIME: {entry.entry_time}</div>
-                        <div class="col-lg-4">UPDATED AT: {entry.updated}</div>
+                <p className="card-body entry_body truncate">{renderHTML(entry.body)}</p> 
+                <div className="card-footer">
+                    <div className="row entry_footer">
+                        <div className="col-lg-4">CREATED DATE: {entry.entry_date}</div>
+                        <div className="col-lg-4">CREATED TIME: {entry.entry_time}</div>
+                        <div className="col-lg-4">UPDATED AT: {entry.updated}</div>
                     </div>
                 </div>
             </div><br />
@@ -44,7 +43,7 @@ class GetEntries extends Component {
         return ( 
             <div>
                 <Navbar />
-                <div class="container">
+                <div className="container">
                 <Menu /><br />
                 <div className="scroll">
                 {showArticles}

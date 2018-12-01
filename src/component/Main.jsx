@@ -34,17 +34,19 @@ class Main extends Component {
             this.props.UpdateEntries(data, this.props.id);
         }
           this.componentDidUpdate=()=>{
+          if(this.props.entry.entry.status_code === 201 || this.props.entry.entry.status_code=== 200){    
             const { history } = this.props;
             history.push("/allEntries");
           }
+        }
         }
         componentDidUpdate(prevProps){
             if(this.props.title !== prevProps.title){
                 this.setState({
                     body:this.props.body,
-                    title:this.props.title,
+                    title:this.props.title
                 })
-            }
+        }
           }
 
     render() { 
@@ -53,7 +55,7 @@ class Main extends Component {
         return ( 
             <div>
                 <Navbar />
-                <div class="container">
+                <div className="container">
                 <Menu /><br />
                 <EntryForm
                 actionType={this.props.actionType} 
@@ -65,7 +67,7 @@ class Main extends Component {
                 body={this.props.body}
                 />
                 {status_code ?
-                <div class="error">{message}</div>:"none"}
+                <div class="error">{message}</div>:""}
                 </div>
                 <div className="fixed-bottom link">
                 <Footer />
