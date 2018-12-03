@@ -9,6 +9,8 @@ import UpdateEntry from './component/UpdateEntry';
 import GetEntries from './component/GetEntries';
 import ViewEntry from './component/SingleEntry';
 import notFound from './component/Notfound';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import './App.css';
 
 class App extends Component {
@@ -16,6 +18,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div>
+        <ToastContainer />
           <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Landingpage} />

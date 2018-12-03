@@ -8,8 +8,8 @@ import CreateEntries from '../component/CreateEntry';
 import RegistrationForm from '../component/Register';
 import LoginForm from '../component/login';
 import Main from '../component/Main';
-import UpdateEntry from '../component/UpdateEntry';
-import GetEntries from '../component/GetEntries';
+import { UpdateEntry } from '../component/UpdateEntry';
+import { GetEntries } from '../component/GetEntries';
 import ViewEntry from '../component/SingleEntry';
 import store from '../store';
 
@@ -25,8 +25,22 @@ describe('entries components', () => {
     preventDefault: jest.fn(),
   });
 
+  const props = {
+    entry: {
+      entries: {
+        result:[ { body: '<p>my entries<p>' }],
+      },
+    },
+    fetchEntries:jest.fn(),
+  }
+
+  const data = {
+    map: jest.fn(),
+  }
+  const showArticles = data;
+
   it('should test get all entries without crashing', () => {
-    mount(<Router><GetEntries store={store} /></Router>);
+   mount(<Router><GetEntries store={store} {...props} /></Router>);
   });
   it('should test create entry without crashing', () => {
     mount(<Router><CreateEntries store={store} /></Router>);
@@ -34,13 +48,29 @@ describe('entries components', () => {
   it('should test update entry without crashing', () => {
     const props = {
       entry: {
-        results: { title: 'man' },
+        result: [{ title: 'man' }],
       },
+      singleEntry: jest.fn(),
     };
-    mount(<Router><Provider store={store}><UpdateEntry store={store} match={{ params: { id: 2 } }} {...props} /></Provider></Router>);
+ mount(<Provider store={store}><Router><UpdateEntry store={store} match={{ params: { id: 2 } }} {...props} /></Router></Provider>);
+  });
+  it('should test update entry without crashing with empty data', () => {
+    const props = {
+      entry: {
+      },
+      singleEntry: jest.fn(),
+    };
+   mount(<Provider store={store}><Router><UpdateEntry store={store} match={{ params: { id: 2 } }} {...props} /></Router></Provider>);
   });
   it('should test view entry without crashing', () => {
-    mount(<Router><ViewEntry store={store} match={{ params: { id: 2 } }} /></Router>);
+    const props = {
+      entry:{entry: {
+        result: [{ id: 1, title: 'man', body:"<p>body</p>" }],
+      },
+    },
+      singleEntry: jest.fn(),
+    };
+    mount(<Router><ViewEntry store={store} match={{ params: { id: 2 } }} {...props}/></Router>);
   });
   it('should test register user without crashing', () => {
     const props = {
