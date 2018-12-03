@@ -57,6 +57,8 @@ class RegistrationForm extends Component {
         if(this.props.user.user.token){
             LoggedInUser(this.props.user.user.token,this.state.username)
         }
+        let loaddata;
+        loaddata=this.state.message||this.props.user.user.message;
         return ( 
             <div>
                 <form method="POST"onSubmit={this.handleSubmit}>
@@ -89,9 +91,10 @@ class RegistrationForm extends Component {
                 </form>
                 {this.props.user.user.status_code ===400 || this.state.message ||this.props.user.user.status_code ===409 ?
                 <div className="error">{this.props.user.user.message}{this.state.message}</div>:""}
-                {this.state.load===true && !this.props.user.user.message && !this.state.message?
+                {this.state.load===true && !loaddata?
                 <div class="lds-dual-ring"></div>:""
                 }
+                {this.state.message=""}
             </div>
          );
     }
