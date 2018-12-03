@@ -12,13 +12,15 @@ import {
 class GetEntries extends Component {
     state = { 
         title:"",
-        body:""
+        body:"",
+        load:true,
      }
      componentDidMount(){
          this.props.fetchEntries()
      }
 
-    render() { 
+    render() {
+        console.log(this.props.entry.entries.result)
        const data=this.props.entry.entries.result;
        let showArticles;
        if(data){
@@ -31,8 +33,8 @@ class GetEntries extends Component {
                 <p className="card-body entry_body truncate">{renderHTML(entry.body)}</p> 
                 <div className="card-footer">
                     <div className="row entry_footer">
-                        <div className="col-lg-4">CREATED DATE: {entry.entry_date}</div>
-                        <div className="col-lg-4">CREATED TIME: {entry.entry_time}</div>
+                        <div className="col-lg-4">CREATED ON: {entry.entry_date}</div>
+                        <div className="col-lg-4">CREATED AT: {entry.entry_time}</div>
                         <div className="col-lg-4">UPDATED AT: {entry.updated}</div>
                     </div>
                 </div>
@@ -48,6 +50,9 @@ class GetEntries extends Component {
                 <LoggedinUser/>
                 <Menu /><br />
                 <div className="scroll">
+                {this.state.load ===true &&this.props.entry.entries.result ===undefined?
+                <center><div class="lds-dual-ring color">ENTRIES LOADING...</div></center>:""
+                }
                 {showArticles}
                 </div>
                 </div>

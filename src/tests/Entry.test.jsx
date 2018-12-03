@@ -66,7 +66,12 @@ describe('entries components', () => {
       CreateEntries: jest.fn(),
       UpdateEntries: jest.fn(),
     };
-    const component = shallow(<Main store={store} {...props} />).dive().instance();
+    const props1 = {
+      entry: { entry: { status_code: 201 } },
+      body:"body",
+      title:"title",
+    };
+    const component = shallow(<Main store={store} {...props} {...props1} />).dive().instance();
     component.onchange({ target: { value: 'title' } });
     component.handleChange({ target: { value: 'body' } });
     component.onhandleSubmit({ preventDefault() {} });
@@ -81,5 +86,6 @@ describe('entries components', () => {
     component.onchange({ target: { value: 'title1' } });
     component.handleChange({ target: { value: 'body1' } });
     component.onhandleSubmit({ preventDefault() {} });
+    shallow(<Main store={store} {...props} />)
   });
 });
