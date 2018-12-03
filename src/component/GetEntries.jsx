@@ -9,7 +9,7 @@ import Menu from './menu';
 import {
     fetchEntries,
   } from '../actions/AuthAction';
-class GetEntries extends Component {
+export class GetEntries extends Component {
     state = { 
         title:"",
         body:"",
@@ -20,22 +20,21 @@ class GetEntries extends Component {
      }
 
     render() {
-        console.log(this.props.entry.entries.result)
        const data=this.props.entry.entries.result;
        let showArticles;
        if(data){
-        showArticles = data.map(entry => (
-        <div key={entry.id}>
+        showArticles = data.map(entry1 => (
+        <div key={entry1.id}>
             <div className="card">
-            <Link to={`/entry/${entry.id}`}>
-            <div className="card-header title">{entry.title}</div>
+            <Link to={`/entry/${entry1.id}`}>
+            <div className="card-header title">{entry1.title}</div>
               </Link>
-                <p className="card-body entry_body truncate">{renderHTML(entry.body)}</p> 
+                <p className="card-body entry_body truncate">{renderHTML(entry1.body)}</p> 
                 <div className="card-footer">
                     <div className="row entry_footer">
-                        <div className="col-lg-4">CREATED ON: {entry.entry_date}</div>
-                        <div className="col-lg-4">CREATED AT: {entry.entry_time}</div>
-                        <div className="col-lg-4">UPDATED AT: {entry.updated}</div>
+                        <div className="col-lg-4">CREATED ON: {entry1.entry_date}</div>
+                        <div className="col-lg-4">CREATED AT: {entry1.entry_time}</div>
+                        <div className="col-lg-4">UPDATED AT: {entry1.updated}</div>
                     </div>
                 </div>
             </div><br />

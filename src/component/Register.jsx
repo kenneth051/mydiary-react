@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { toast } from 'react-toastify';
 import {
     signUpUser, loginUser,
   } from '../actions/AuthAction';
@@ -24,7 +25,8 @@ class RegistrationForm extends Component {
     }
     handleSubmit=(event)=>{
         event.preventDefault()
-        this.setState({load:true});
+        toast.dismiss();
+        this.setState({load:true})
         const data={
             firstname:this.state.firstname,
             lastname:this.state.lastname,
@@ -37,7 +39,8 @@ class RegistrationForm extends Component {
               this.setState({
                 message:"passwords don't match",
                 load:false
-              })   
+              }) 
+              toast.error("passwords don't match", { autoClose: 4500, hideProgressBar: true });  
         }else{
             this.props.signUpUser(data);
             this.componentDidUpdate=()=>{
@@ -89,12 +92,9 @@ class RegistrationForm extends Component {
                     </div>
                     <center><button type="submit" className="btn btn-success" >CREATE ACCOUNT</button></center>
                 </form>
-                {this.props.user.user.status_code ===400 || this.state.message ||this.props.user.user.status_code ===409 ?
-                <div className="error">{this.props.user.user.message}{this.state.message}</div>:""}
                 {this.state.load===true && !loaddata?
                 <div class="lds-dual-ring"></div>:""
                 }
-                {this.state.message=""}
             </div>
          );
     }

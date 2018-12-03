@@ -5,7 +5,7 @@ import {
   singleEntry,
 } from '../actions/AuthAction';
 
-class UpdateEntry extends Component {
+export class UpdateEntry extends Component {
   componentWillMount() {
     this.props.singleEntry(this.props.match.params.id);
   }

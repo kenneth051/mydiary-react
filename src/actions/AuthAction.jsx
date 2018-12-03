@@ -1,4 +1,4 @@
-
+import { toast } from 'react-toastify';
 import {
   SIGNUP, LOGIN, CREATE_ENTRY, FETCH_ENTRIES, SINGLE_ENTRY, UPDATE_ENTRY,
 } from './ActionTypes';
@@ -20,6 +20,11 @@ export const signUpUser = userData => dispatch => fetch(`${baseurl}/API/v1/auth/
       type: SIGNUP,
       payload: data,
     });
+    if (data.message) {
+      let errors = data.message;
+      toast.error(errors, { autoClose: 4500, hideProgressBar: true });
+      errors = null;
+    }
   });
 
 export const loginUser = loginData => dispatch => fetch(`${baseurl}/API/v1/auth/users/login`, {
@@ -36,6 +41,12 @@ export const loginUser = loginData => dispatch => fetch(`${baseurl}/API/v1/auth/
       type: LOGIN,
       payload: data,
     });
+    if (data.status_code === 403) {
+      let errors = data.message;
+      toast.dismiss();
+      toast.error(errors, { autoClose: 4500, hideProgressBar: true });
+      errors = null;
+    }
   });
 
 export const CreateEntries = entryData => dispatch => fetch(`${baseurl}/API/v1/entries`, {

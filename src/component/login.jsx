@@ -46,8 +46,6 @@ class LoginForm extends Component {
                     </div>
                     <center><button type="submit" className="btn btn-success">LOGIN</button></center>
                 </form>
-                {this.props.user.user.status_code ===403 ?
-                <div className="error">{this.props.user.user.message}</div>:""}
                 {this.state.loginloader===true && !this.props.user.user.message  ?
                 <center><div class="lds-dual-ring"></div></center>:""
                 }
